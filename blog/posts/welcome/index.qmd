@@ -1,0 +1,12 @@
+---
+title: "Welcome To My Blog"
+author: "Pratik Kulkarni"
+date: "2024-06-15"
+categories: [news]
+---
+
+This is the first post in a Quarto blog. Welcome!
+
+![](thumbnail.jpg)
+
+This is a test post.
