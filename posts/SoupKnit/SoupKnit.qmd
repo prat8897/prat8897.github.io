@@ -83,4 +83,4 @@ While we decided not to monetize Soupknit, the journey was worth every minute. I
 
 ### Code
 
-At long last, we've made the repository public. The website is available to check out at [SoupKnit.com](https://soupknit.com) and the code open-sourced at [Github](https://github.com/SoupKnit/soupknit).
+At long last, we've made the repository public. The website is available to check out at [SoupKnit.com](https://soupknit.com) and the code open-sourced on [Github](https://github.com/SoupKnit/soupknit).
