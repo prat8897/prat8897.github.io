@@ -252,7 +252,7 @@ top_word = get_top_word(words, fixed_letters, misplaced_letters, tried_words)
 print(top_word)
 ```
 
-And now we have LOWAN. 
+And now we have LOWAN.
 ![](LOWAN.png)
 
 ```{python}
