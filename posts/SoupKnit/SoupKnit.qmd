@@ -1,5 +1,5 @@
 ---
-title: "Building Soupknit: The Journey from Idea to No-Code Machine Learning Platform"
+title: "Building Soupknit: The Journey from Idea to a No-Code Machine Learning Platform"
 author: "Pratik Kulkarni"
 date: "2024-10-17"
 categories: [python, react, no-code, machine-learning]
