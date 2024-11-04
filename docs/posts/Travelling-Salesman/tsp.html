@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Pratik Kulkarni">
+<meta name="dcterms.date" content="2024-11-03">
 
-<title>tsp – Misfit Tidbits</title>
+<title>Unlocking Efficiency in Solving the Traveling Salesman Problem with Exact Visibility-Based Edge Elimination – Misfit Tidbits</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -144,7 +146,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Unlocking Efficiency in Solving the Traveling Salesman Problem with Exact Visibility-Based Edge Elimination</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Travelling Salesman</div>
+                <div class="quarto-category">Computer Science</div>
+                <div class="quarto-category">Hamiltonian Cycle</div>
+                <div class="quarto-category">Combinatorial Optimization</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Pratik Kulkarni </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 3, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
@@ -154,8 +190,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="unlocking-efficiency-in-solving-the-traveling-salesman-problem-with-exact-visibility-based-edge-elimination" class="level1">
-<h1>Unlocking Efficiency in Solving the Traveling Salesman Problem with Exact Visibility-Based Edge Elimination</h1>
+
 <p>The Traveling Salesman Problem (TSP) stands as one of the most enduring and challenging problems in combinatorial optimization. It seeks the shortest possible route that allows a salesman to visit each city exactly once and return to the origin city. Despite its simple formulation, TSP is classified as NP-hard, meaning that the time required to solve it exactly grows exponentially with the number of cities. This complexity has driven researchers to explore various heuristic and exact algorithms to find optimal or near-optimal solutions efficiently.</p>
 <p>In my recent research, I introduce an <strong>exact algorithm</strong> that leverages <strong>visibility-based edge elimination</strong> combined with <strong>spatial partitioning</strong> to solve the TSP more efficiently. Unlike heuristic methods that approximate solutions, our approach guarantees the discovery of the optimal route without sacrificing accuracy. This breakthrough is achieved by systematically removing edges that intersect and obstruct visibility between point pairs, thereby reducing the solution space without excluding any potential edges from the optimal TSP cycle.</p>
 <section id="understanding-the-core-concepts" class="level2">
@@ -683,7 +718,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-441"><a href="#cb1-441" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> <span class="dv">20</span></span>
 <span id="cb1-442"><a href="#cb1-442" aria-hidden="true" tabindex="-1"></a>    seed <span class="op">=</span> <span class="dv">981222119</span></span>
 <span id="cb1-443"><a href="#cb1-443" aria-hidden="true" tabindex="-1"></a>    main(N, seed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
 </section>
 </section>
 <section id="experimental-results" class="level1">

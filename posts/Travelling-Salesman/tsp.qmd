@@ -1,4 +1,9 @@
-# Unlocking Efficiency in Solving the Traveling Salesman Problem with Exact Visibility-Based Edge Elimination
+---
+title: "Unlocking Efficiency in Solving the Traveling Salesman Problem with Exact Visibility-Based Edge Elimination"
+author: "Pratik Kulkarni"
+date: "2024-11-03"
+categories: [Travelling Salesman, Computer Science, Hamiltonian Cycle, Combinatorial Optimization]
+---
 
 The Traveling Salesman Problem (TSP) stands as one of the most enduring and challenging problems in combinatorial optimization. It seeks the shortest possible route that allows a salesman to visit each city exactly once and return to the origin city. Despite its simple formulation, TSP is classified as NP-hard, meaning that the time required to solve it exactly grows exponentially with the number of cities. This complexity has driven researchers to explore various heuristic and exact algorithms to find optimal or near-optimal solutions efficiently.
 
