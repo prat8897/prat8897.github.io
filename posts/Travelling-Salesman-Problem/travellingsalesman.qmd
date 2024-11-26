@@ -93,6 +93,9 @@ This algorithm works exceptionally well and has never faulted even once. In fact
 
 This is rather suspicious. The exceptionally good performance and lack of counterexamples suggest that this might be an **Exact Algorithm**. Is it?
 
+![Comparison with Concorde](55nodes.png)
+*Image: Comparison with an Optimal Solution derived by Concorde on the Hard to Solve Instances of the Euclidean Traveling Salesman Problem Dataset*
+
 ## Implications of a Polynomial-Time Exact Algorithm for the Euclidean TSP
 
 If validated, discovering a **polynomial-time exact algorithm** for the Euclidean TSP would have profound implications:

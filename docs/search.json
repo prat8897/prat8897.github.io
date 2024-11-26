@@ -200,7 +200,7 @@
     "href": "posts/Travelling-Salesman-Problem/travellingsalesman.html#results",
     "title": "Solving the Traveling Salesman Problem: From Heuristics to a Potential Polynomial-Time Breakthrough",
     "section": "Results",
-    "text": "Results\nThis algorithm works exceptionally well and has never faulted even once. In fact, in the set of “Hard to Solve Instances of the Euclidean Traveling Salesman Problem” created by Stefan Hougardy and Xianghui Zhong, this Dynamic Lookahead Insertion algorithm found the optimal solutions each time.\nThis is rather suspicious. The exceptionally good performance and lack of counterexamples suggest that this might be an Exact Algorithm. Is it?"
+    "text": "Results\nThis algorithm works exceptionally well and has never faulted even once. In fact, in the set of “Hard to Solve Instances of the Euclidean Traveling Salesman Problem” created by Stefan Hougardy and Xianghui Zhong, this Dynamic Lookahead Insertion algorithm found the optimal solutions each time.\nThis is rather suspicious. The exceptionally good performance and lack of counterexamples suggest that this might be an Exact Algorithm. Is it?\n Image: Comparison with an Optimal Solution derived by Concorde on the Hard to Solve Instances of the Euclidean Traveling Salesman Problem Dataset"
   },
   {
     "objectID": "posts/Travelling-Salesman-Problem/travellingsalesman.html#implications-of-a-polynomial-time-exact-algorithm-for-the-euclidean-tsp",
