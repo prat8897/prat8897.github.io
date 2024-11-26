@@ -154,13 +154,6 @@
     "text": "References\n\nHard to Solve Instances of the Euclidean Traveling Salesman Problem by Stefan Hougardy and Xianghui Zhong"
   },
   {
-    "objectID": "posts/post-with-code/index.html",
-    "href": "posts/post-with-code/index.html",
-    "title": "Quarto Basics",
-    "section": "",
-    "text": "For a demonstration of a line plot on a polar axis:\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(\n  subplot_kw = {'projection': 'polar'} \n)\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n\n\n\n\n\n\n\n\nFigure 1: A line plot on a polar axis"
-  },
-  {
     "objectID": "posts/welcome/index.html",
     "href": "posts/welcome/index.html",
     "title": "Welcome To My Blog",
@@ -179,6 +172,6 @@
     "href": "index.html",
     "title": "A blog of curious observations among other things",
     "section": "",
-    "text": "Quarto Basics\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSolving the Traveling Salesman Problem: From Heuristics to a Potential Polynomial-Time Breakthrough\n\n\n\n\n\n\nTravelling Salesman\n\n\nComputer Science\n\n\nHamiltonian Cycle\n\n\nCombinatorial Optimization\n\n\n\n\n\n\n\n\n\nNov 27, 2024\n\n\nPratik Kulkarni\n\n\n\n\n\n\n\n\n\n\n\n\nUnlocking Efficiency in Solving the Traveling Salesman Problem with Exact Visibility-Based Edge Elimination\n\n\n\n\n\n\nTravelling Salesman\n\n\nComputer Science\n\n\nHamiltonian Cycle\n\n\nCombinatorial Optimization\n\n\n\n\n\n\n\n\n\nNov 3, 2024\n\n\nPratik Kulkarni\n\n\n\n\n\n\n\n\n\n\n\n\nBuilding Soupknit: The Journey from Idea to a No-Code Machine Learning Platform\n\n\n\n\n\n\npython\n\n\nreact\n\n\nno-code\n\n\nmachine-learning\n\n\n\n\n\n\n\n\n\nOct 17, 2024\n\n\nPratik Kulkarni\n\n\n\n\n\n\n\n\n\n\n\n\nHacking Wordle using Probability\n\n\n\n\n\n\npython\n\n\nwordle\n\n\nregex\n\n\n\n\n\n\n\n\n\nJun 18, 2024\n\n\nPratik Kulkarni\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nJun 15, 2024\n\n\nPratik Kulkarni\n\n\n\n\n\n\nNo matching items"
+    "text": "Solving the Traveling Salesman Problem: From Heuristics to a Potential Polynomial-Time Breakthrough\n\n\n\n\n\n\nTravelling Salesman\n\n\nComputer Science\n\n\nHamiltonian Cycle\n\n\nCombinatorial Optimization\n\n\n\n\n\n\n\n\n\nNov 27, 2024\n\n\nPratik Kulkarni\n\n\n\n\n\n\n\n\n\n\n\n\nUnlocking Efficiency in Solving the Traveling Salesman Problem with Exact Visibility-Based Edge Elimination\n\n\n\n\n\n\nTravelling Salesman\n\n\nComputer Science\n\n\nHamiltonian Cycle\n\n\nCombinatorial Optimization\n\n\n\n\n\n\n\n\n\nNov 3, 2024\n\n\nPratik Kulkarni\n\n\n\n\n\n\n\n\n\n\n\n\nBuilding Soupknit: The Journey from Idea to a No-Code Machine Learning Platform\n\n\n\n\n\n\npython\n\n\nreact\n\n\nno-code\n\n\nmachine-learning\n\n\n\n\n\n\n\n\n\nOct 17, 2024\n\n\nPratik Kulkarni\n\n\n\n\n\n\n\n\n\n\n\n\nHacking Wordle using Probability\n\n\n\n\n\n\npython\n\n\nwordle\n\n\nregex\n\n\n\n\n\n\n\n\n\nJun 18, 2024\n\n\nPratik Kulkarni\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nJun 15, 2024\n\n\nPratik Kulkarni\n\n\n\n\n\n\nNo matching items"
   }
 ]
