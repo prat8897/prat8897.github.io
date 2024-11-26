@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Pratik Kulkarni">
+<meta name="dcterms.date" content="2024-11-03">
 
-<title>A blog of curious observations among other things – Misfit Tidbits</title>
+<title>Unlocking Efficiency in Solving the Traveling Salesman Problem with Exact Visibility-Based Edge Elimination – Misfit Tidbits</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +25,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,77 +68,19 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Misfit Tidbits</span>
     </a>
   </div>
@@ -149,11 +91,16 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/prat8897"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"> <i class="bi bi-twitter" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -167,264 +114,103 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">A blog of curious observations among other things</h1>
-                      </div>
+    <div class="quarto-title column-body">
+      <h1 class="title">Unlocking Efficiency in Solving the Traveling Salesman Problem with Exact Visibility-Based Edge Elimination</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Travelling Salesman</div>
+                <div class="quarto-category">Computer Science</div>
+                <div class="quarto-category">Hamiltonian Cycle</div>
+                <div class="quarto-category">Combinatorial Optimization</div>
+              </div>
+                  </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Pratik Kulkarni </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 3, 2024</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="Combinatorial Optimization">Combinatorial Optimization <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Computer Science">Computer Science <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Hamiltonian Cycle">Hamiltonian Cycle <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Travelling Salesman">Travelling Salesman <span class="quarto-category-count">(2)</span></div><div class="category" data-category="machine-learning">machine-learning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="news">news <span class="quarto-category-count">(1)</span></div><div class="category" data-category="no-code">no-code <span class="quarto-category-count">(1)</span></div><div class="category" data-category="python">python <span class="quarto-category-count">(2)</span></div><div class="category" data-category="react">react <span class="quarto-category-count">(1)</span></div><div class="category" data-category="regex">regex <span class="quarto-category-count">(1)</span></div><div class="category" data-category="wordle">wordle <span class="quarto-category-count">(1)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
+<section id="cracking-the-traveling-salesman-problem-from-heuristics-to-a-potential-breakthrough" class="level1">
+<h1>Cracking the Traveling Salesman Problem: From Heuristics to a Potential Breakthrough**</h1>
+<p>The Traveling Salesman Problem (TSP) has long stood as a cornerstone of computational complexity and optimization theory. Its deceptively simple premise belies the intricate challenges it presents to mathematicians and computer scientists alike. In my journey to tackle the TSP, I delved deep into algorithm design, heuristic development, and unexpected breakthroughs that might just shift our understanding of this classic problem.</p>
+<p><strong>Understanding the Traveling Salesman Problem</strong></p>
+<p>At its core, the TSP asks a fundamental question: <strong>Given a list of cities and the distances between each pair, what is the shortest possible route that visits each city exactly once and returns to the origin city?</strong> Despite its straightforward formulation, the TSP is notorious for its computational difficulty, especially as the number of cities increases.</p>
+<p><strong>Polynomial vs.&nbsp;Non-Polynomial Runtimes</strong></p>
+<p>When approaching the TSP, it’s essential to differentiate between polynomial and non-polynomial runtimes:</p>
+<p>• <strong>Brute Force:</strong> The most straightforward method involves checking every possible permutation of cities to find the shortest path. This approach has a factorial runtime, which quickly becomes infeasible as the number of cities grows.</p>
+<p>• <strong>Held-Karp Algorithm:</strong> A dynamic programming solution that reduces the time complexity to . While more efficient than brute force, it’s still exponential and impractical for large datasets.</p>
+<p>• <strong>Polynomial-Time Algorithms:</strong> These algorithms run in time that can be expressed as a polynomial function of the input size. For the TSP, finding a polynomial-time exact solution has been a significant challenge, as it remains unsolved whether such an algorithm exists for all cases.</p>
+<p>“This sounded easy, and perhaps it was!”</p>
+<p>With a foundation in algorithmic theory, I embarked on developing heuristics—strategies designed to find good-enough solutions more efficiently than exact algorithms.</p>
+<p><strong>The Power of Heuristics</strong></p>
+<p><strong>Heuristics</strong> are problem-solving methods that employ practical approaches to produce solutions that may not be perfect but are sufficient for reaching immediate goals. In the context of the TSP, heuristics aim to find a short (though not necessarily the shortest) possible route without exhaustively checking all permutations.</p>
+<p>In my free time, I immersed myself in tinkering with various heuristics, experimenting with different insertion methods to optimize the path.</p>
+<p><strong>Developing a Promising Heuristic</strong></p>
+<p>One heuristic that showed promise was the <strong>pr + rq - pq Cheapest Insertion Heuristic</strong>. This method typically starts with a simple structure—a triangle formed by three random cities—and incrementally adds new cities by inserting them between existing pairs in a way that minimally increases the total distance.</p>
+<p>However, this approach often settled into <strong>local optima</strong>, resulting in paths that intersected themselves.</p>
+<p><strong>Fun fact:</strong> Any TSP path with intersecting routes is suboptimal. The key to an effective solution lies in balancing local optima (good immediate choices) with global optima (the best overall path).</p>
+<p><em>Gif: Evolution of the heuristic approach over iterations.</em></p>
+<p><em>Image: An example solution generated by the heuristic.</em></p>
+<p><strong>Breaking Through Local Optima</strong></p>
+<p>Despite its potential, the initial heuristic had limitations. The paths often intersected, indicating suboptimal routes. Determined to overcome these challenges, I explored enhancements to the heuristic:</p>
+<p><strong>The Breakthrough Algorithm</strong></p>
+<p>I introduced a <strong>Dynamic Lookahead Insertion</strong> strategy:</p>
+<ol type="1">
+<li><p><strong>Simulate Insertions:</strong> For each remaining city, simulate its insertion between every edge in the current cycle.</p></li>
+<li><p><strong>Estimate Total Distance:</strong> For each simulated insertion, estimate the total distance of the complete TSP path if that city were inserted at that position.</p></li>
+<li><p><strong>Choose the Best Insertion:</strong> Select the insertion that results in the least total distance and update the cycle accordingly.</p></li>
+<li><p><strong>Repeat:</strong> Continue this process iteratively for all cities until the path is complete.</p></li>
+</ol>
+<p>This “lookahead” mechanism allowed the algorithm to anticipate the impact of each insertion, thereby avoiding local optima traps.</p>
+<p><strong>Astonishing Results</strong></p>
+<p>The results were nothing short of remarkable. The <strong>Dynamic Lookahead Insertion</strong> algorithm consistently outperformed established tools like <strong>Google’s OR-Tools</strong>. Intrigued by these outcomes, I compared my algorithm against exact solvers using <strong>Dynamic Programming</strong> and the <strong>PuLP Python Library</strong>. To my amazement, my heuristic matched the exact solutions <strong>15,000 times</strong> without a single fault.</p>
+<p><em>Image: Comparison of solutions between the new algorithm and exact solvers.</em></p>
+<p>This consistency suggested that my heuristic might transcend its intended purpose and function as an exact algorithm—one that guarantees the optimal solution.</p>
+<p><strong>Implications of a Polynomial-Time Exact Algorithm for the Euclidean TSP</strong></p>
+<p>If confirmed, discovering a <strong>polynomial-time exact algorithm</strong> for the Euclidean TSP would have profound implications:</p>
+<p>• <strong>Computational Theory:</strong> It would challenge the current understanding of P vs NP, potentially showing that a classically NP-hard problem can be solved in polynomial time under specific conditions.</p>
+<p>• <strong>Practical Applications:</strong> Industries relying on route optimization, such as logistics and transportation, would benefit from more efficient and reliable algorithms.</p>
+<p>• <strong>Further Research:</strong> This breakthrough would open new avenues in algorithm design and complexity theory, inspiring researchers to explore similar approaches for other complex problems.</p>
+<p><strong>Extending to the TSP Path Variant</strong></p>
+<p>Beyond the classic TSP, this algorithm can be adapted to solve the <strong>Travelling Salesman Path Problem</strong>. Unlike the traditional TSP, where the path forms a cycle, the path variant seeks the shortest route that connects any two cities without necessarily returning to the starting point. This flexibility broadens the algorithm’s applicability, catering to scenarios where a return to the origin isn’t required.</p>
+<p><strong>Conclusion</strong></p>
+<p>From grappling with the inherent complexities of the TSP to developing and refining heuristics, the journey has been both challenging and exhilarating. The emergence of the <strong>Dynamic Lookahead Insertion</strong> algorithm not only showcases the potential of innovative heuristic methods but also hints at possibilities that could redefine our approach to classic computational problems.</p>
+<p>As I continue to validate and explore this algorithm’s capabilities, the hope is that it will contribute significantly to both theoretical and practical advancements in solving one of the most enduring puzzles in computer science.</p>
+<p><strong>References</strong></p>
+<p>• <a href="https://www.or.uni-bonn.de/~hougardy/HardTSPInstances.html">Hard to Solve Instances of the Euclidean Traveling Salesman Problem by Stefan Hougardy and Xianghui Zhong</a></p>
+<p>_Feel free to reach out with questions, feedback, or to discuss potential collaborations! email me at my-github-username at gmail.com.</p>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1718726235240" data-listing-reading-time-sort="1" data-listing-word-count-sort="54">
-<div class="thumbnail">
-<p><a href="./posts/post-with-code/index.html" class="no-external"></a></p><a href="./posts/post-with-code/index.html" class="no-external">
-<p class="card-img-top"><img src="posts/post-with-code/index_files/figure-html/fig-polar-output-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/post-with-code/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/post-with-code/index.html" class="no-external">Quarto Basics</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/post-with-code/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/post-with-code/index.html" class="no-external">For a demonstration of a line plot on a polar axis:</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="./posts/post-with-code/index.html" class="no-external"></a></p><a href="./posts/post-with-code/index.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="Travelling Salesman,Computer Science,Hamiltonian Cycle,Combinatorial Optimization" data-listing-date-sort="1732645800000" data-listing-file-modified-sort="1732642364348" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1272">
-<div class="thumbnail">
-<p><a href="./posts/Travelling-Salesman-Problem/travellingsalesman.html" class="no-external"></a></p><a href="./posts/Travelling-Salesman-Problem/travellingsalesman.html" class="no-external">
-<p class="card-img-top"><img src="posts/Travelling-Salesman-Problem/cycle_evolution.gif" alt="Evolution of Heuristic"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Travelling-Salesman-Problem/travellingsalesman.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Travelling-Salesman-Problem/travellingsalesman.html" class="no-external">Solving the Traveling Salesman Problem: From Heuristics to a Potential Polynomial-Time Breakthrough</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Travelling-Salesman-Problem/travellingsalesman.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Travelling Salesman'); return false;">
-Travelling Salesman
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Computer Science'); return false;">
-Computer Science
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Hamiltonian Cycle'); return false;">
-Hamiltonian Cycle
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Combinatorial Optimization'); return false;">
-Combinatorial Optimization
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/Travelling-Salesman-Problem/travellingsalesman.html" class="no-external">The <strong>Traveling Salesman Problem (TSP)</strong> has been a central topic in computer science and operations research for decades. Its seemingly simple question—finding the shortest…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Travelling-Salesman-Problem/travellingsalesman.html" class="no-external">
-<div class="listing-date">
-Nov 27, 2024
-</div>
-<div class="listing-author">
-Pratik Kulkarni
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="Travelling Salesman,Computer Science,Hamiltonian Cycle,Combinatorial Optimization" data-listing-date-sort="1730572200000" data-listing-file-modified-sort="1730697072829" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="30" data-listing-word-count-sort="5901">
-<div class="thumbnail">
-<p><a href="./posts/Travelling-Salesman/tsp.html" class="no-external"></a></p><a href="./posts/Travelling-Salesman/tsp.html" class="no-external">
-<p class="card-img-top"><img src="posts/Travelling-Salesman/TSP.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/Travelling-Salesman/tsp.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Travelling-Salesman/tsp.html" class="no-external">Unlocking Efficiency in Solving the Traveling Salesman Problem with Exact Visibility-Based Edge Elimination</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Travelling-Salesman/tsp.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Travelling Salesman'); return false;">
-Travelling Salesman
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Computer Science'); return false;">
-Computer Science
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Hamiltonian Cycle'); return false;">
-Hamiltonian Cycle
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Combinatorial Optimization'); return false;">
-Combinatorial Optimization
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/Travelling-Salesman/tsp.html" class="no-external">The Traveling Salesman Problem (TSP) stands as one of the most enduring and challenging problems in combinatorial optimization. It seeks the shortest possible route that…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Travelling-Salesman/tsp.html" class="no-external">
-<div class="listing-date">
-Nov 3, 2024
-</div>
-<div class="listing-author">
-Pratik Kulkarni
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="python,react,no-code,machine-learning" data-listing-date-sort="1729103400000" data-listing-file-modified-sort="1730671203744" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1416">
-<div class="thumbnail">
-<p><a href="./posts/SoupKnit/SoupKnit.html" class="no-external"></a></p><a href="./posts/SoupKnit/SoupKnit.html" class="no-external">
-<p class="card-img-top"><img src="posts/SoupKnit/soupknit.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/SoupKnit/SoupKnit.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/SoupKnit/SoupKnit.html" class="no-external">Building Soupknit: The Journey from Idea to a No-Code Machine Learning Platform</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/SoupKnit/SoupKnit.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('python'); return false;">
-python
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('react'); return false;">
-react
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('no-code'); return false;">
-no-code
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('machine-learning'); return false;">
-machine-learning
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/SoupKnit/SoupKnit.html" class="no-external">Soupknit started as a small idea. There were four of us, all developers, and we were constantly frustrated by how tedious building machine learning models could be. Even for…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/SoupKnit/SoupKnit.html" class="no-external">
-<div class="listing-date">
-Oct 17, 2024
-</div>
-<div class="listing-author">
-Pratik Kulkarni
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="python,wordle,regex" data-listing-date-sort="1718649000000" data-listing-file-modified-sort="1718812952951" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1954">
-<div class="thumbnail">
-<p><a href="./posts/wordle/wordle.html" class="no-external"></a></p><a href="./posts/wordle/wordle.html" class="no-external">
-<p class="card-img-top"><img src="posts/wordle/wordle_files/figure-html/cell-3-output-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/wordle/wordle.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/wordle/wordle.html" class="no-external">Hacking Wordle using Probability</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/wordle/wordle.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('python'); return false;">
-python
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('wordle'); return false;">
-wordle
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('regex'); return false;">
-regex
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/wordle/wordle.html" class="no-external">Wordle is a simple word guessing game. You have to guess a five-letter word in six attempts.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/wordle/wordle.html" class="no-external">
-<div class="listing-date">
-Jun 18, 2024
-</div>
-<div class="listing-author">
-Pratik Kulkarni
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="news" data-listing-date-sort="1718389800000" data-listing-file-modified-sort="1718726224587" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="14">
-<div class="thumbnail">
-<p><a href="./posts/welcome/index.html" class="no-external"></a></p><a href="./posts/welcome/index.html" class="no-external">
-<p class="card-img-top"><img src="posts/welcome/thumbnail.jpg"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/welcome/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/welcome/index.html" class="no-external">Welcome To My Blog</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/welcome/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('news'); return false;">
-news
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/welcome/index.html" class="no-external">This is the first post in a Quarto blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/welcome/index.html" class="no-external">
-<div class="listing-date">
-Jun 15, 2024
-</div>
-<div class="listing-author">
-Pratik Kulkarni
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
