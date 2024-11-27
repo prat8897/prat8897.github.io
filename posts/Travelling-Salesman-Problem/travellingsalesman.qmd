@@ -70,6 +70,9 @@ I introduced a **Dynamic Lookahead Insertion** strategy, which works as follows:
 
 This "lookahead" mechanism allowed the algorithm to anticipate the impact of each insertion, effectively navigating around local optima traps.
 
+![Cycle Building Step by Step](cycle_building_with_projections.gif)
+*Image: A step by step animation of how the Dynamic Lookahead Insertion works*
+
 ## Python Implementation
 
 The python implementation is available on [Github](https://github.com/prat8897/TravellingSalesmanProblem/blob/65eea78f4baea63a6d342a181611f0c2c3c0ad7d/tsp_helpers.py#L29C1-L117C24)
@@ -80,8 +83,8 @@ The results were nothing short of remarkable. The **Dynamic Lookahead Insertion*
 
 I set up a comprehensive testing environment, generating **15,000 random TSP instances** and solving them using both my algorithm and the exact solvers. To my amazement, my heuristic matched the exact solutions **every single time**. Not once, not twice, but **15,000 times**.
 
-![Cycle Building Step by Step](cycle_building.gif)
-*Image: A step by step animation of how the Dynamic Lookahead Insertion works*
+![Cycle Building Step by Step](cycle_building_least_distance_updated.gif)
+*Image: A step by step animation of the algorithm evolving to its final state*
 
 This consistency suggested that my heuristic might transcend its intended purpose and function as an **exact algorithm**—one that guarantees the optimal solution.
 
@@ -109,6 +112,9 @@ If validated, discovering a **polynomial-time exact algorithm** for the Euclidea
 ## Extending Horizons: The TSP Path Variant
 
 Beyond the classic TSP, this algorithm can be adapted to solve the **Travelling Salesman Path Problem (TSP Path)**. Unlike the traditional TSP, where the path forms a cycle, the path variant seeks the shortest route that connects any two cities without necessarily returning to the starting point. This flexibility broadens the algorithm’s applicability, catering to scenarios where a return trip isn’t necessary. The code for this variant is also available on [Github](https://github.com/prat8897/TSP-Path)
+
+![Path Building Step by Step](path_building_parallel.gif)
+*Image: A step by step animation of how the Dynamic Lookahead Insertion works for the TSP Path problem*
 
 ## Conclusion: A Journey of Persistence and Innovation
 

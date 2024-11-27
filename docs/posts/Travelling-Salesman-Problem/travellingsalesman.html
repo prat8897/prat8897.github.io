@@ -210,6 +210,7 @@ The key to an effective solution lies in balancing local optima (good immediate 
 <li><strong>Repeat:</strong> Continue this process iteratively for all cities and for all edges until the path is complete.</li>
 </ol>
 <p>This “lookahead” mechanism allowed the algorithm to anticipate the impact of each insertion, effectively navigating around local optima traps.</p>
+<p><img src="cycle_building_with_projections.gif" class="img-fluid" alt="Cycle Building Step by Step"> <em>Image: A step by step animation of how the Dynamic Lookahead Insertion works</em></p>
 </section>
 </section>
 <section id="python-implementation" class="level2">
@@ -220,7 +221,7 @@ The key to an effective solution lies in balancing local optima (good immediate 
 <h2 class="anchored" data-anchor-id="astonishing-results-a-potential-breakthrough">Astonishing Results: A Potential Breakthrough</h2>
 <p>The results were nothing short of remarkable. The <strong>Dynamic Lookahead Insertion</strong> algorithm consistently outperformed established tools like <strong>Google’s OR-Tools</strong>. Intrigued by these outcomes, I decided to rigorously test my algorithm against exact solvers using <strong>Dynamic Programming</strong> and the <strong>PuLP Python Library</strong>.</p>
 <p>I set up a comprehensive testing environment, generating <strong>15,000 random TSP instances</strong> and solving them using both my algorithm and the exact solvers. To my amazement, my heuristic matched the exact solutions <strong>every single time</strong>. Not once, not twice, but <strong>15,000 times</strong>.</p>
-<p><img src="cycle_building.gif" class="img-fluid" alt="Cycle Building Step by Step"> <em>Image: A step by step animation of how the Dynamic Lookahead Insertion works</em></p>
+<p><img src="cycle_building_least_distance_updated.gif" class="img-fluid" alt="Cycle Building Step by Step"> <em>Image: A step by step animation of the algorithm evolving to its final state</em></p>
 <p>This consistency suggested that my heuristic might transcend its intended purpose and function as an <strong>exact algorithm</strong>—one that guarantees the optimal solution.</p>
 <blockquote class="blockquote">
 <p><strong>“I found a heuristic that worked pretty well (pr + rq - pq cheapest insertion heuristic). However, this algorithm almost always decided to settle on local optima, and the resulting path often led to intersections in the path.”</strong></p>
@@ -244,6 +245,7 @@ The key to an effective solution lies in balancing local optima (good immediate 
 <section id="extending-horizons-the-tsp-path-variant" class="level2">
 <h2 class="anchored" data-anchor-id="extending-horizons-the-tsp-path-variant">Extending Horizons: The TSP Path Variant</h2>
 <p>Beyond the classic TSP, this algorithm can be adapted to solve the <strong>Travelling Salesman Path Problem (TSP Path)</strong>. Unlike the traditional TSP, where the path forms a cycle, the path variant seeks the shortest route that connects any two cities without necessarily returning to the starting point. This flexibility broadens the algorithm’s applicability, catering to scenarios where a return trip isn’t necessary. The code for this variant is also available on <a href="https://github.com/prat8897/TSP-Path">Github</a></p>
+<p><img src="path_building_parallel.gif" class="img-fluid" alt="Path Building Step by Step"> <em>Image: A step by step animation of how the Dynamic Lookahead Insertion works for the TSP Path problem</em></p>
 </section>
 <section id="conclusion-a-journey-of-persistence-and-innovation" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion-a-journey-of-persistence-and-innovation">Conclusion: A Journey of Persistence and Innovation</h2>
