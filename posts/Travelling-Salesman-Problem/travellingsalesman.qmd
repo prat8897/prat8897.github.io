@@ -71,7 +71,7 @@ I introduced a **Dynamic Lookahead Insertion** strategy, which works as follows:
 This "lookahead" mechanism allowed the algorithm to anticipate the impact of each insertion, effectively navigating around local optima traps.
 
 ![Cycle Building Step by Step](cycle_building_with_projections.gif)
-*Image: A step by step animation of how the Dynamic Lookahead Insertion works*
+*Image: A step by step animation of how the Dynamic Lookahead Insertion works. For each inserted point, it simulates completing the path with the rest of the points, incrementally building the path.*
 
 ## Python Implementation
 

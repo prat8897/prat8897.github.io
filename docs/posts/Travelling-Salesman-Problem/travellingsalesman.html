@@ -210,7 +210,7 @@ The key to an effective solution lies in balancing local optima (good immediate 
 <li><strong>Repeat:</strong> Continue this process iteratively for all cities and for all edges until the path is complete.</li>
 </ol>
 <p>This “lookahead” mechanism allowed the algorithm to anticipate the impact of each insertion, effectively navigating around local optima traps.</p>
-<p><img src="cycle_building_with_projections.gif" class="img-fluid" alt="Cycle Building Step by Step"> <em>Image: A step by step animation of how the Dynamic Lookahead Insertion works</em></p>
+<p><img src="cycle_building_with_projections.gif" class="img-fluid" alt="Cycle Building Step by Step"> <em>Image: A step by step animation of how the Dynamic Lookahead Insertion works. For each inserted point, it simulates completing the path with the rest of the points, incrementally building the path</em></p>
 </section>
 </section>
 <section id="python-implementation" class="level2">
