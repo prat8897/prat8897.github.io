@@ -99,6 +99,9 @@ This is rather suspicious. The exceptionally good performance and lack of counte
 ![Comparison with Concorde](55nodes.png)
 *Image: Comparison with an Optimal Solution derived by Concorde on the Hard to Solve Instances of the Euclidean Traveling Salesman Problem Dataset*
 
+![Comparison with Concorde 2](comparison.png)
+*Image: Comparison with a Optimal Solution derived by Concorde on the TSPLIB Instances Dataset, specifically eil51.tsp. Dynamic Lookahead Insertion provided a better solution than Concorde*
+
 ## Implications of a Polynomial-Time Exact Algorithm for the Euclidean TSP
 
 If validated, discovering a **polynomial-time exact algorithm** for the Euclidean TSP would have profound implications:

@@ -210,7 +210,7 @@ The key to an effective solution lies in balancing local optima (good immediate 
 <li><strong>Repeat:</strong> Continue this process iteratively for all cities and for all edges until the path is complete.</li>
 </ol>
 <p>This “lookahead” mechanism allowed the algorithm to anticipate the impact of each insertion, effectively navigating around local optima traps.</p>
-<p><img src="cycle_building_with_projections.gif" class="img-fluid" alt="Cycle Building Step by Step"> <em>Image: A step by step animation of how the Dynamic Lookahead Insertion works. For each inserted point, it simulates completing the path with the rest of the points, incrementally building the path</em></p>
+<p><img src="cycle_building_with_projections.gif" class="img-fluid" alt="Cycle Building Step by Step"> <em>Image: A step by step animation of how the Dynamic Lookahead Insertion works. For each inserted point, it simulates completing the path with the rest of the points, incrementally building the path.</em></p>
 </section>
 </section>
 <section id="python-implementation" class="level2">
@@ -232,6 +232,7 @@ The key to an effective solution lies in balancing local optima (good immediate 
 <p>This algorithm works exceptionally well and has never faulted even once. In fact, in the set of <a href="https://www.or.uni-bonn.de/~hougardy/HardTSPInstances.html">“Hard to Solve Instances of the Euclidean Traveling Salesman Problem”</a> created by <a href="https://www.or.uni-bonn.de/~hougardy/HardTSPInstances.html">Stefan Hougardy and Xianghui Zhong</a>, this <strong>Dynamic Lookahead Insertion</strong> algorithm found the optimal solutions each time.</p>
 <p>This is rather suspicious. The exceptionally good performance and lack of counterexamples suggest that this might be an <strong>Exact Algorithm</strong>. Is it?</p>
 <p><img src="55nodes.png" class="img-fluid" alt="Comparison with Concorde"> <em>Image: Comparison with an Optimal Solution derived by Concorde on the Hard to Solve Instances of the Euclidean Traveling Salesman Problem Dataset</em></p>
+<p><img src="comparison.png" class="img-fluid" alt="Comparison with Concorde 2"> <em>Image: Comparison with a Optimal Solution derived by Concorde on the TSPLIB Instances Dataset, specifically eil51.tsp. Dynamic Lookahead Insertion provided a better solution than Concorde</em></p>
 </section>
 <section id="implications-of-a-polynomial-time-exact-algorithm-for-the-euclidean-tsp" class="level2">
 <h2 class="anchored" data-anchor-id="implications-of-a-polynomial-time-exact-algorithm-for-the-euclidean-tsp">Implications of a Polynomial-Time Exact Algorithm for the Euclidean TSP</h2>
