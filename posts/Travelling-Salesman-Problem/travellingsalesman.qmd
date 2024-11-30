@@ -112,6 +112,9 @@ If validated, discovering a **polynomial-time exact algorithm** for the Euclidea
   
 - **Inspiring Further Research:** This discovery would open new avenues in algorithm design and complexity theory, encouraging researchers to explore similar strategies for other complex problems.
 
+![Comparison with Concorde 3](comparison2.png)
+*Image: Comparison with a Optimal Solution derived by Concorde on the TSPLIB Instances Dataset, specifically st70.tsp. Dynamic Lookahead Insertion provided a better solution than Concorde again*
+
 ## Extending Horizons: The TSP Path Variant
 
 Beyond the classic TSP, this algorithm can be adapted to solve the **Travelling Salesman Path Problem (TSP Path)**. Unlike the traditional TSP, where the path forms a cycle, the path variant seeks the shortest route that connects any two cities without necessarily returning to the starting point. This flexibility broadens the algorithm’s applicability, catering to scenarios where a return trip isn’t necessary. The code for this variant is also available on [Github](https://github.com/prat8897/TSP-Path)
