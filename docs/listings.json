@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/MNIST/mnist.html",
       "/posts/Travelling-Salesman-Problem/travellingsalesman.html",
       "/posts/Travelling-Salesman/tsp.html",
       "/posts/SoupKnit/SoupKnit.html",
