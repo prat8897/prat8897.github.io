@@ -203,7 +203,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Train a classifier: Feed these features into a Random Forest classifier</li>
 </ol>
 <p>Fitting the Gaussian Mixture model to the data happens like so:</p>
-<div id="5e38b744" class="cell" data-execution_count="1">
+<div id="f15224e8" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.mixture <span class="im">import</span> GaussianMixture</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to fit a Gaussian Mixture Model to the distribution</span></span>
@@ -222,7 +222,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then, we simply train a Random Forest Classifier on these values. Here’s the entire code:</p>
-<div id="57d9e94b" class="cell" data-execution_count="2">
+<div id="02c8d079" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_digits</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
@@ -428,14 +428,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="mnist_files/figure-html/cell-3-output-3.png" width="1443" height="950" class="figure-img"></p>
+<p><img src="mnist_files/figure-html/cell-3-output-3.png" width="1430" height="950" class="figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="mnist_files/figure-html/cell-3-output-4.png" width="1443" height="950" class="figure-img"></p>
+<p><img src="mnist_files/figure-html/cell-3-output-4.png" width="1430" height="950" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -449,7 +449,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="mnist_files/figure-html/cell-3-output-6.png" width="1443" height="950" class="figure-img"></p>
+<p><img src="mnist_files/figure-html/cell-3-output-6.png" width="1430" height="950" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -458,25 +458,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Training classifier...
 Extracting features for test data...
 Making predictions...
-Accuracy: 0.9028
+Accuracy: 0.8889
 
 Classification Report:
               precision    recall  f1-score   support
 
-           0       0.93      0.85      0.89        33
-           1       0.96      0.89      0.93        28
-           2       0.88      0.88      0.88        33
-           3       0.81      0.85      0.83        34
-           4       0.96      1.00      0.98        46
-           5       0.91      0.85      0.88        47
-           6       1.00      1.00      1.00        35
-           7       0.87      0.97      0.92        34
-           8       0.79      0.87      0.83        30
-           9       0.92      0.85      0.88        40
+           0       0.90      0.85      0.88        33
+           1       0.89      0.89      0.89        28
+           2       0.83      0.88      0.85        33
+           3       0.81      0.76      0.79        34
+           4       0.98      1.00      0.99        46
+           5       0.93      0.85      0.89        47
+           6       1.00      0.97      0.99        35
+           7       0.89      0.94      0.91        34
+           8       0.76      0.83      0.79        30
+           9       0.85      0.88      0.86        40
 
-    accuracy                           0.90       360
-   macro avg       0.90      0.90      0.90       360
-weighted avg       0.91      0.90      0.90       360
+    accuracy                           0.89       360
+   macro avg       0.88      0.89      0.88       360
+weighted avg       0.89      0.89      0.89       360
 </code></pre>
 </div>
 </div>
@@ -486,7 +486,7 @@ weighted avg       0.91      0.90      0.90       360
 <li>The “sand pile” distributions for all four directions</li>
 <li>The fitted Gaussian mixtures overlaid on each distribution</li>
 </ul>
-<p>The surprisingly good news? This approach achieves over 91% accuracy on the test set without any complex neural networks or deep learning. That’s quite impressive for such a simple, physics-inspired method!</p>
+<p>The surprisingly good news? This approach achieves over 90% accuracy on the test set without any complex neural networks or deep learning. That’s quite impressive for such a simple, physics-inspired method!</p>
 </section>
 <section id="why-does-this-work" class="level2">
 <h2 class="anchored" data-anchor-id="why-does-this-work">Why Does This Work?</h2>
@@ -508,7 +508,7 @@ weighted avg       0.91      0.90      0.90       360
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
 <p>Machine learning doesn’t always have to mean complex neural networks and black-box models. Sometimes, a creative approach inspired by physical intuition can yield surprisingly good results.</p>
 <p>The Gravity MNIST method is a perfect example of cross-disciplinary thinking: taking a concept from physics (gravity) and applying it to a classic machine learning problem. It’s a reminder that creativity still has an important place in the age of large models and big data.</p>
-<p>Would this approach ever beat state-of-the-art deep learning models on MNIST? Probably not. But at 91% accuracy with a beautifully simple approach, it’s a wonderful example of how thinking differently can lead to elegant solutions.</p>
+<p>Would this approach ever beat state-of-the-art deep learning models on MNIST? Probably not. But at 90% accuracy with a beautifully simple approach, it’s a wonderful example of how thinking differently can lead to elegant solutions.</p>
 
 
 </section>
