@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Pratik Kulkarni">
+<meta name="dcterms.date" content="2026-08-01">
 
-<title>rca – Misfit Tidbits</title>
+<title>Reversible Cellular Automata: A Novel Framework – Misfit Tidbits</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -143,13 +145,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">Reversible Cellular Automata: A Novel Framework</h1>
-                      </div>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Reversible Cellular Automata</div>
+              </div>
+                  </div>
   </div>
     
   
   <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Pratik Kulkarni </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">August 1, 2026</p>
+      </div>
+    </div>
     
       
     </div>
@@ -181,7 +198,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="framework-implementation" class="level2">
 <h2 class="anchored" data-anchor-id="framework-implementation">Framework Implementation</h2>
 <p>Let’s start by implementing the core RCA framework:</p>
-<div id="944c68d4" class="cell" data-execution_count="1">
+<div id="a4f18e96" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
@@ -261,7 +278,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="hash-based-decision-function" class="level2">
 <h2 class="anchored" data-anchor-id="hash-based-decision-function">Hash-Based Decision Function</h2>
 <p>For our demonstration, we’ll use a hash-based decision function that provides deterministic but pseudo-random behavior:</p>
-<div id="a8ee3066" class="cell" data-execution_count="2">
+<div id="206b9b97" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hash_decision(surrounding_bits: np.ndarray, position: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Use hash of surrounding bits and position to make decision"""</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert to string for hashing</span></span>
@@ -274,7 +291,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="demonstration-hash-based-rca-evolution" class="level2">
 <h2 class="anchored" data-anchor-id="demonstration-hash-based-rca-evolution">Demonstration: Hash-Based RCA Evolution</h2>
 <p>Let’s see the hash-based RCA in action:</p>
-<div id="96155d5a" class="cell" data-execution_count="3">
+<div id="48f650a9" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create initial binary sequence</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>initial_sequence <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>]</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Initial sequence: </span><span class="sc">{</span>initial_sequence<span class="sc">}</span><span class="ss">"</span>)</span>
@@ -315,7 +332,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="testing-reversibility" class="level2">
 <h2 class="anchored" data-anchor-id="testing-reversibility">Testing Reversibility</h2>
 <p>The most crucial property of our RCA is perfect reversibility. Let’s verify this works correctly:</p>
-<div id="677f17f2" class="cell" data-execution_count="4">
+<div id="e036046c" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_reversibility(initial_state: List[<span class="bu">int</span>], decision_func: Callable, generations: <span class="bu">int</span>):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Test that the RCA is truly reversible"""</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -356,7 +373,7 @@ After reversing 8 generations: [1 0 1 1 0 0 1 0 1 0]
 Successfully reversed: True
 Difference: [0 0 0 0 0 0 0 0 0 0]</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="18">
+<div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>True</code></pre>
 </div>
 </div>
@@ -364,7 +381,7 @@ Difference: [0 0 0 0 0 0 0 0 0 0]</code></pre>
 <section id="step-by-step-evolution-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="step-by-step-evolution-analysis">Step-by-Step Evolution Analysis</h2>
 <p>Let’s trace through a few generations to understand how the hash function makes decisions:</p>
-<div id="5c96741e" class="cell" data-execution_count="5">
+<div id="f496fd83" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> analyze_step_by_step(initial_state: List[<span class="bu">int</span>], generations: <span class="bu">int</span> <span class="op">=</span> <span class="dv">3</span>):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Analyze the evolution step by step"""</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -436,7 +453,7 @@ Decisions: ['FLIP', 'FLIP', 'KEEP', 'KEEP', 'KEEP', 'FLIP', 'FLIP', 'FLIP']</cod
 <section id="pattern-visualization-and-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="pattern-visualization-and-analysis">Pattern Visualization and Analysis</h2>
 <p>Let’s create comprehensive visualizations to understand the patterns that emerge:</p>
-<div id="00b94431" class="cell" data-execution_count="6">
+<div id="1f1bcf71" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_comprehensive_analysis(initial_state: List[<span class="bu">int</span>], generations: <span class="bu">int</span> <span class="op">=</span> <span class="dv">25</span>):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Create comprehensive analysis with multiple visualizations"""</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -508,7 +525,7 @@ Decisions: ['FLIP', 'FLIP', 'KEEP', 'KEEP', 'KEEP', 'FLIP', 'FLIP', 'FLIP']</cod
 <section id="reversibility-demonstration" class="level2">
 <h2 class="anchored" data-anchor-id="reversibility-demonstration">Reversibility Demonstration</h2>
 <p>Let’s create a visual demonstration of the reversibility:</p>
-<div id="afbc6b91" class="cell" data-execution_count="7">
+<div id="3026bfbf" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> demonstrate_reversibility_visually():</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Visual demonstration of forward and reverse evolution"""</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -586,7 +603,12 @@ Perfect reversibility: True</code></pre>
 <p>Our hash-based RCA framework has several interesting theoretical properties:</p>
 <section id="information-preservation" class="level3">
 <h3 class="anchored" data-anchor-id="information-preservation">Information Preservation</h3>
-<p>By never looking at the current bit when making decisions, we ensure that each bit flip is completely determined by its context. This means: - Every transformation is bijective (one-to-one mapping) - The reverse operation has complete information to undo any change - No information is lost during evolution</p>
+<p>By never looking at the current bit when making decisions, we ensure that each bit flip is completely determined by its context. This means:</p>
+<ul>
+<li><p>Every transformation is bijective (one-to-one mapping)</p></li>
+<li><p>The reverse operation has complete information to undo any change</p></li>
+<li><p>No information is lost during evolution</p></li>
+</ul>
 </section>
 <section id="hash-function-properties" class="level3">
 <h3 class="anchored" data-anchor-id="hash-function-properties">Hash Function Properties</h3>
@@ -606,7 +628,12 @@ Perfect reversibility: True</code></pre>
 <p>This reversible cellular automata framework has several potential applications:</p>
 <section id="cryptographic-applications" class="level3">
 <h3 class="anchored" data-anchor-id="cryptographic-applications">1. Cryptographic Applications</h3>
-<p>The perfect reversibility combined with the hash-based decision function makes this suitable for: - Stream ciphers where you need to encrypt and decrypt - Pseudo-random number generation with reproducible sequences - Key derivation functions that can be reversed</p>
+<p>The perfect reversibility combined with the hash-based decision function makes this suitable for:</p>
+<ul>
+<li><p>Stream ciphers where you need to encrypt and decrypt</p></li>
+<li><p>Pseudo-random number generation with reproducible sequences</p></li>
+<li><p>Key derivation functions that can be reversed</p></li>
+</ul>
 </section>
 <section id="simulation-applications" class="level3">
 <h3 class="anchored" data-anchor-id="simulation-applications">2. Simulation Applications</h3>
