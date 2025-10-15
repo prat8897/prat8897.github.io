@@ -1,7 +1,7 @@
 ---
 title: "Reversible Cellular Automata: A Novel Framework"
 author: "Pratik Kulkarni"
-date: "2026-08-01"
+date: "2025-08-01"
 categories: [Reversible Cellular Automata]
 execute-directory: ../
 ---
