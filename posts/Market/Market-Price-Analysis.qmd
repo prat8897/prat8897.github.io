@@ -1,4 +1,10 @@
-# Finding the Perfect Price: A Data-Driven Approach to Product Pricing
+---
+title: "Finding the Perfect Price: A Data-Driven Approach to Product Pricing"
+author: "Pratik Kulkarni"
+date: "2025-10-15"
+categories: [Market Analysis, Pricing]
+execute-directory: ../
+---
 
 Pricing your product is one of the most critical decisions you'll make as a business owner. Price it too high, and you'll scare away customers. Price it too low, and you'll leave money on the table. So how do you find that sweet spot?
 
