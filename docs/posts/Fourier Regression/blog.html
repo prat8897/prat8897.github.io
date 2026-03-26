@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.45">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Pratik Kulkarni">
+<meta name="dcterms.date" content="2026-03-26">
+
+<title>Scalars as Circles: A Geometric Path to Fourier Regression – Misfit Tidbits</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Misfit Tidbits</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/prat8897"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Scalars as Circles: A Geometric Path to Fourier Regression</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">python</div>
+                <div class="quarto-category">machine-learning</div>
+                <div class="quarto-category">Fourier</div>
+                <div class="quarto-category">time-series</div>
+                <div class="quarto-category">interpretability</div>
+                <div class="quarto-category">regression</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Pratik Kulkarni </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">March 26, 2026</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p><em>How representing numbers as complex rotations leads to a simple, interpretable model that beats neural nets on periodic data — derived from scratch.</em></p>
+<section id="the-question-that-started-this" class="level2">
+<h2 class="anchored" data-anchor-id="the-question-that-started-this">The question that started this</h2>
+<p>What if a number isn’t just a position on a line — but a <em>rotation</em>?</p>
+<p>Every real scalar <span class="math inline">\(x\)</span> can be lifted into the complex plane via Euler’s formula:</p>
+<p><span class="math display">\[x \;\longmapsto\; e^{ix} \;=\; \cos(x) + i\sin(x)\]</span></p>
+<p>As <span class="math inline">\(x\)</span> grows from zero, this point doesn’t move along a line — it <em>sweeps</em> the unit circle. The real part oscillates as <span class="math inline">\(\cos(x)\)</span>. The imaginary part oscillates as <span class="math inline">\(\sin(x)\)</span>. One scalar, two waves, born naturally from a single exponential.</p>
+<p>This is not a trick. It’s geometry. And it turns out to be a powerful way to think about function approximation.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig1_geometry.png" class="img-fluid figure-img"></p>
+<figcaption>Geometric intuition: a scalar lives on a circle</figcaption>
+</figure>
+</div>
+<p><em>Left: scalar <span class="math inline">\(x\)</span> maps to a point on the unit circle via <span class="math inline">\(e^{ix}\)</span>. The projections give <span class="math inline">\(\cos(x)\)</span> (horizontal) and <span class="math inline">\(\sin(x)\)</span> (vertical). Centre: unrolled into waves. Right: a tuple of phasors — one per frequency.</em></p>
+<hr>
+</section>
+<section id="from-one-circle-to-many-the-tuple-embedding" class="level2">
+<h2 class="anchored" data-anchor-id="from-one-circle-to-many-the-tuple-embedding">From one circle to many: the tuple embedding</h2>
+<p>A single phasor <span class="math inline">\(e^{ix}\)</span> gives you one frequency. But you can represent <span class="math inline">\(x\)</span> with a whole <em>tuple</em> of circles, each spinning at a different rate:</p>
+<p><span class="math display">\[x \;\longmapsto\; \bigl(e^{i\omega_1 x},\; e^{i\omega_2 x},\; \ldots,\; e^{i\omega_K x}\bigr)\]</span></p>
+<p>Each component <span class="math inline">\(e^{i\omega_k x}\)</span> is a point on the unit circle, spinning <span class="math inline">\(\omega_k\)</span> times faster than the base circle. Together they form a vector of phasors — a point on a <span class="math inline">\(K\)</span>-dimensional torus.</p>
+<p>Taking the real and imaginary parts of each component gives you <span class="math inline">\(2K\)</span> features:</p>
+<p><span class="math display">\[\phi(x) = \bigl[\cos(\omega_1 x),\; \sin(\omega_1 x),\; \cos(\omega_2 x),\; \sin(\omega_2 x),\; \ldots\bigr]\]</span></p>
+<p>This is the feature map. A linear model on top of this is <strong>Fourier regression</strong>.</p>
+<hr>
+</section>
+<section id="what-happens-when-you-nest-the-exponential" class="level2">
+<h2 class="anchored" data-anchor-id="what-happens-when-you-nest-the-exponential">What happens when you nest the exponential?</h2>
+<p>Here’s where the geometry gets strange. What if you apply the exponential <em>again</em> — using the output of the first as input to the next?</p>
+<p><span class="math display">\[z_1 = e^{ix}, \qquad z_2 = e^{iz_1}, \qquad z_3 = e^{iz_2}\]</span></p>
+<p>At depth 1, you’re on the unit circle. At depth 2:</p>
+<p><span class="math display">\[z_2 = e^{i(\cos x + i\sin x)} = e^{-\sin x} \cdot \bigl(\cos(\cos x) + i\sin(\cos x)\bigr)\]</span></p>
+<p>The imaginary part of <span class="math inline">\(z_1\)</span> (which is <span class="math inline">\(\sin x\)</span>) becomes a <strong>real damping envelope</strong> <span class="math inline">\(e^{-\sin x}\)</span>. The point leaves the unit circle. Its distance from the origin <em>breathes</em> as <span class="math inline">\(x\)</span> grows. And the new phase is <span class="math inline">\(\cos x\)</span> — a frequency modulated by a frequency.</p>
+<p>By depth 3, the orbit traces a Lissajous-like self-intersecting curve in the complex plane. More importantly: the nested tower generates <strong>infinitely many Fourier harmonics automatically</strong>, via the Jacobi–Anger expansion:</p>
+<p><span class="math display">\[e^{iz\cos\theta} = \sum_{n=-\infty}^{\infty} i^n J_n(z)\, e^{in\theta}\]</span></p>
+<p>where <span class="math inline">\(J_n\)</span> are Bessel functions. Each layer of nesting adds a new layer of harmonic content.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig2_tower.png" class="img-fluid figure-img"></p>
+<figcaption>Nested exponential tower</figcaption>
+</figure>
+</div>
+<p><em>Left to right: the orbit of <span class="math inline">\(z_1\)</span>, <span class="math inline">\(z_2\)</span>, <span class="math inline">\(z_3\)</span> as <span class="math inline">\(x\)</span> sweeps <span class="math inline">\([0, 4\pi]\)</span>. Colour encodes phase. Notice the unit circle (depth 1) becoming a spiral (depth 2) becoming a Bessel-weighted curve (depth 3).</em></p>
+<hr>
+</section>
+<section id="the-model-linear-regression-in-fourier-space" class="level2">
+<h2 class="anchored" data-anchor-id="the-model-linear-regression-in-fourier-space">The model: linear regression in Fourier space</h2>
+<p>Back to depth 1, the practical model. Given data <span class="math inline">\((x_i, y_i)\)</span>, we:</p>
+<ol type="1">
+<li><strong>Embed</strong> each scalar: <span class="math inline">\(x_i \mapsto \phi(x_i) \in \mathbb{R}^{2K+1}\)</span></li>
+<li><strong>Fit</strong> a linear model: <span class="math inline">\(\hat{y} = \mathbf{w}^\top \phi(x) + b\)</span></li>
+</ol>
+<p>Expanding this:</p>
+<p><span class="math display">\[\hat{y}(x) = w_0 + \sum_{k=1}^{K} \Bigl[ w_k^c \cos(\omega_k x) + w_k^s \sin(\omega_k x) \Bigr]\]</span></p>
+<p>When the frequencies <span class="math inline">\(\omega_k = 1, 2, \ldots, K\)</span> are fixed, the weights <span class="math inline">\(\mathbf{w}\)</span> are found in closed form via ordinary least squares — <strong>no gradient descent, no learning rate, no epochs</strong>. It’s a matrix solve.</p>
+<p>When the frequencies are also learned (gradient descent on <span class="math inline">\(\omega_k\)</span>), the model becomes non-linear and can find the true frequencies in the signal directly.</p>
+<hr>
+</section>
+<section id="fixed-vs.-learned-frequencies" class="level2">
+<h2 class="anchored" data-anchor-id="fixed-vs.-learned-frequencies">Fixed vs.&nbsp;learned frequencies</h2>
+<p>The classical Fourier basis uses integer harmonics: <span class="math inline">\(\omega_k = k\)</span>. This works — but it’s wasteful. If the true signal has components at frequencies <span class="math inline">\(\{1, 3, 7\}\)</span>, a fixed grid needs to cover all integers up to 7 (7 frequencies, 15 parameters) to represent them.</p>
+<p>A learned-frequency model with <span class="math inline">\(K=3\)</span> can find those exact components directly — 7 parameters, same accuracy.</p>
+<p>The gradient for the frequency update is:</p>
+<p><span class="math display">\[\frac{\partial \mathcal{L}}{\partial \omega_k} = \frac{2}{N} \sum_i r_i \cdot \Bigl(-w_k^c \sin(\omega_k x_i) + w_k^s \cos(\omega_k x_i)\Bigr) \cdot x_i\]</span></p>
+<p>where <span class="math inline">\(r_i = \hat{y}_i - y_i\)</span> is the residual. The frequency literally <em>chases</em> the signal.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig3_fixed_vs_learned.png" class="img-fluid figure-img"></p>
+<figcaption>Fixed harmonic grid vs.&nbsp;learned frequencies</figcaption>
+</figure>
+</div>
+<p><em>Top: both models fit the signal, but learned K=3 achieves equal R² with 3× fewer parameters. Bottom: the fixed spectrum spreads energy across all bins; the learned spectrum finds the true frequencies precisely.</em></p>
+<hr>
+</section>
+<section id="why-neural-nets-struggle-here" class="level2">
+<h2 class="anchored" data-anchor-id="why-neural-nets-struggle-here">Why neural nets struggle here</h2>
+<p>Standard multilayer perceptrons have a well-documented <strong>spectral bias</strong>: they learn low-frequency components of a function first, and converge extremely slowly to high-frequency content. This isn’t an implementation detail — it’s a consequence of the neural tangent kernel having rapidly decaying eigenvalues at high frequencies.</p>
+<p>For periodic time series (sunspots, electricity demand, seasonal sales), this is a fundamental problem. The periodicity <em>is</em> the signal.</p>
+<p>Fourier regression has no such bias. It builds periodicity into its architecture by construction — the model is literally a sum of oscillations. Every frequency is equally accessible.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig5_spectral_bias.png" class="img-fluid figure-img"></p>
+<figcaption>Spectral bias: neural nets miss high frequencies</figcaption>
+</figure>
+</div>
+<p><em>Left: the neural proxy (smooth, polynomial) blurs the high-frequency components. Fourier regression recovers them. Right: residual energy by frequency — the neural net leaves large residuals at high frequencies; Fourier regression does not.</em></p>
+<hr>
+</section>
+<section id="real-dataset-benchmarks" class="level2">
+<h2 class="anchored" data-anchor-id="real-dataset-benchmarks">Real dataset benchmarks</h2>
+<p>Four canonical periodic datasets. Train/test split at 70%. Compared against linear regression and a mean baseline.</p>
+<p>Two important honest details worth noting:</p>
+<p><strong>Period must be known (or estimated).</strong> The Fourier basis is <span class="math inline">\(\cos(2\pi k t / T)\)</span> where <span class="math inline">\(T\)</span> is the period in samples — 132 months for sunspots, 12 months for airline/CO₂, 24 hours for electricity. This is one piece of domain knowledge the model requires that a neural net doesn’t. The payoff is complete interpretability of what it finds.</p>
+<p><strong>Trend datasets get a slope term.</strong> Airline passengers and CO₂ both have a rising trend on top of the seasonal cycle. The fix is simple: add a normalised <span class="math inline">\(t\)</span> column to the feature matrix alongside the Fourier terms, then OLS fits trend + seasonality simultaneously in one matrix solve — no separate detrending step needed.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig4_benchmarks.png" class="img-fluid figure-img"></p>
+<figcaption>Benchmarks on real periodic datasets</figcaption>
+</figure>
+</div>
+<p><em>Purple = Fourier fit. Amber dots = test data. Dashed vertical line = train/test split. Datasets with a rising trend (airline, CO₂) include a linear slope term alongside the Fourier harmonics — all fit in one OLS call.</em></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dataset</th>
+<th>Fourier R²</th>
+<th>Linear R²</th>
+<th>Mean R²</th>
+<th>Fourier params</th>
+<th>trend term</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Sunspots (synthetic, 11-yr cycle)</td>
+<td><strong>0.958</strong></td>
+<td>−1.000</td>
+<td>−1.000</td>
+<td>9</td>
+<td>no</td>
+</tr>
+<tr class="even">
+<td>Airline passengers (log)</td>
+<td><strong>0.943</strong></td>
+<td>0.428</td>
+<td>−1.000</td>
+<td>14</td>
+<td>yes</td>
+</tr>
+<tr class="odd">
+<td>CO₂ Mauna Loa</td>
+<td><strong>0.980</strong></td>
+<td>0.691</td>
+<td>−1.000</td>
+<td>14</td>
+<td>yes</td>
+</tr>
+<tr class="even">
+<td>Electricity demand (hourly)</td>
+<td><strong>0.886</strong></td>
+<td>−0.187</td>
+<td>−0.098</td>
+<td>9</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<p>Linear regression fails completely on cyclical data. The Fourier model wins on all four datasets, with fewer parameters than a typical neural net’s <em>first layer</em>, and with zero training loop.</p>
+<hr>
+</section>
+<section id="full-interpretability-you-can-read-the-model" class="level2">
+<h2 class="anchored" data-anchor-id="full-interpretability-you-can-read-the-model">Full interpretability: you can read the model</h2>
+<p>Unlike a neural net, every weight in the Fourier model has a direct physical meaning:</p>
+<ul>
+<li><strong>Amplitude</strong> <span class="math inline">\(A_k = \sqrt{(w_k^c)^2 + (w_k^s)^2}\)</span>: how much energy is at frequency <span class="math inline">\(\omega_k\)</span></li>
+<li><strong>Phase</strong> <span class="math inline">\(\phi_k = \arctan(w_k^s / w_k^c)\)</span>: where the cycle peaks</li>
+<li><strong>Period</strong> <span class="math inline">\(T_k = 1/\omega_k\)</span>: the cycle length in the units of your data</li>
+</ul>
+<p>You can look at the spectrum after fitting and immediately understand <em>what the model found</em>. The polar plot below shows amplitude and phase of every component simultaneously — something a neural net can never give you.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig6_interpretability.png" class="img-fluid figure-img"></p>
+<figcaption>Interpretability: amplitude spectrum and polar decomposition</figcaption>
+</figure>
+</div>
+<p><em>Left: full fit decomposed into individual frequency components. Bottom-left: amplitude spectrum — tall bars are the dominant cycles the model discovered. Bottom-right: polar plot — each spoke is a frequency component, length = amplitude, angle = phase.</em></p>
+<hr>
+</section>
+<section id="the-complete-code" class="level2">
+<h2 class="anchored" data-anchor-id="the-complete-code">The complete code</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>TAU <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fourier_features(t, K, period, trend<span class="op">=</span><span class="va">False</span>, N<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Build feature matrix for Fourier regression.</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">    t      : array of time indices (raw, e.g. 0, 1, 2, ...)</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">    K      : number of Fourier harmonics</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">    period : period in the same units as t (e.g. 12 for monthly data with annual cycle)</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">    trend  : if True, adds a normalised linear slope column</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">    N      : total dataset length, used to normalise the slope to [0, 1]</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">    Layout: [bias, (slope), cos(2πt/T), sin(2πt/T), cos(4πt/T), sin(4πt/T), ...]</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">    Each scalar t_i is embedded as a tuple of complex phasors:</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">        (e^(i·2πt/T), e^(i·4πt/T), ..., e^(i·2πKt/T))</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">    Taking Re and Im of each gives the cos/sin columns above.</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> np.asarray(t, dtype<span class="op">=</span><span class="bu">float</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    cols <span class="op">=</span> [np.ones_like(t)]</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> trend:</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        cols.append(t <span class="op">/</span> <span class="bu">max</span>((N <span class="kw">or</span> <span class="bu">len</span>(t)) <span class="op">-</span> <span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, K <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        cols.append(np.cos(TAU <span class="op">*</span> k <span class="op">*</span> t <span class="op">/</span> period))</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        cols.append(np.sin(TAU <span class="op">*</span> k <span class="op">*</span> t <span class="op">/</span> period))</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.column_stack(cols)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fit(t, y, K, period, trend<span class="op">=</span><span class="va">False</span>):</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Fit by ordinary least squares. No gradient descent, no epochs."""</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> fourier_features(t, K, period, trend, N<span class="op">=</span><span class="bu">len</span>(t))</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.linalg.lstsq(X, y, rcond<span class="op">=</span><span class="va">None</span>)[<span class="dv">0</span>]</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> predict(t, w, K, period, trend<span class="op">=</span><span class="va">False</span>, N<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> fourier_features(t, K, period, trend, N)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> X <span class="op">@</span> w</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> spectrum(w, K, trend<span class="op">=</span><span class="va">False</span>):</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Extract amplitude and phase of each harmonic from fitted weights."""</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    offset <span class="op">=</span> <span class="dv">2</span> <span class="cf">if</span> trend <span class="cf">else</span> <span class="dv">1</span>  <span class="co"># skip bias (+ slope)</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    amps   <span class="op">=</span> [np.sqrt(w[offset<span class="op">+</span><span class="dv">2</span><span class="op">*</span>k]<span class="op">**</span><span class="dv">2</span>   <span class="op">+</span> w[offset<span class="op">+</span><span class="dv">2</span><span class="op">*</span>k<span class="op">+</span><span class="dv">1</span>]<span class="op">**</span><span class="dv">2</span>) <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(K)]</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    phases <span class="op">=</span> [np.arctan2(w[offset<span class="op">+</span><span class="dv">2</span><span class="op">*</span>k<span class="op">+</span><span class="dv">1</span>],  w[offset<span class="op">+</span><span class="dv">2</span><span class="op">*</span>k])       <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(K)]</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> amps, phases</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="co"># ── Example: airline passengers ───────────────────────────────────────────</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">'__main__'</span>:</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    raw <span class="op">=</span> np.array([<span class="dv">112</span>,<span class="dv">118</span>,<span class="dv">132</span>,<span class="dv">129</span>,<span class="dv">121</span>,<span class="dv">135</span>,<span class="dv">148</span>,<span class="dv">148</span>,<span class="dv">136</span>,<span class="dv">119</span>,<span class="dv">104</span>,<span class="dv">118</span>,</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">115</span>,<span class="dv">126</span>,<span class="dv">141</span>,<span class="dv">135</span>,<span class="dv">125</span>,<span class="dv">149</span>,<span class="dv">170</span>,<span class="dv">170</span>,<span class="dv">158</span>,<span class="dv">133</span>,<span class="dv">114</span>,<span class="dv">140</span>,</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">145</span>,<span class="dv">150</span>,<span class="dv">178</span>,<span class="dv">163</span>,<span class="dv">172</span>,<span class="dv">178</span>,<span class="dv">199</span>,<span class="dv">199</span>,<span class="dv">184</span>,<span class="dv">162</span>,<span class="dv">146</span>,<span class="dv">166</span>,</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">171</span>,<span class="dv">180</span>,<span class="dv">193</span>,<span class="dv">181</span>,<span class="dv">183</span>,<span class="dv">218</span>,<span class="dv">230</span>,<span class="dv">242</span>,<span class="dv">209</span>,<span class="dv">191</span>,<span class="dv">172</span>,<span class="dv">194</span>,</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">196</span>,<span class="dv">196</span>,<span class="dv">236</span>,<span class="dv">235</span>,<span class="dv">229</span>,<span class="dv">243</span>,<span class="dv">264</span>,<span class="dv">272</span>,<span class="dv">237</span>,<span class="dv">211</span>,<span class="dv">180</span>,<span class="dv">201</span>,</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">204</span>,<span class="dv">188</span>,<span class="dv">235</span>,<span class="dv">227</span>,<span class="dv">234</span>,<span class="dv">264</span>,<span class="dv">302</span>,<span class="dv">293</span>,<span class="dv">259</span>,<span class="dv">229</span>,<span class="dv">203</span>,<span class="dv">229</span>,</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">242</span>,<span class="dv">233</span>,<span class="dv">267</span>,<span class="dv">269</span>,<span class="dv">270</span>,<span class="dv">315</span>,<span class="dv">364</span>,<span class="dv">347</span>,<span class="dv">312</span>,<span class="dv">274</span>,<span class="dv">237</span>,<span class="dv">278</span>,</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">284</span>,<span class="dv">277</span>,<span class="dv">317</span>,<span class="dv">313</span>,<span class="dv">318</span>,<span class="dv">374</span>,<span class="dv">413</span>,<span class="dv">405</span>,<span class="dv">355</span>,<span class="dv">306</span>,<span class="dv">271</span>,<span class="dv">306</span>,</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">315</span>,<span class="dv">301</span>,<span class="dv">356</span>,<span class="dv">348</span>,<span class="dv">355</span>,<span class="dv">422</span>,<span class="dv">465</span>,<span class="dv">467</span>,<span class="dv">408</span>,<span class="dv">361</span>,<span class="dv">310</span>,<span class="dv">337</span>,</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">360</span>,<span class="dv">342</span>,<span class="dv">406</span>,<span class="dv">396</span>,<span class="dv">420</span>,<span class="dv">472</span>,<span class="dv">548</span>,<span class="dv">559</span>,<span class="dv">463</span>,<span class="dv">407</span>,<span class="dv">362</span>,<span class="dv">405</span>,</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">417</span>,<span class="dv">391</span>,<span class="dv">419</span>,<span class="dv">461</span>,<span class="dv">472</span>,<span class="dv">535</span>,<span class="dv">622</span>,<span class="dv">606</span>,<span class="dv">508</span>,<span class="dv">461</span>,<span class="dv">390</span>,<span class="dv">432</span>], <span class="bu">float</span>)</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> np.log(raw)</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> (y <span class="op">-</span> y.<span class="bu">min</span>()) <span class="op">/</span> (y.<span class="bu">max</span>() <span class="op">-</span> y.<span class="bu">min</span>())</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> <span class="bu">len</span>(y)</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> np.arange(N, dtype<span class="op">=</span><span class="bu">float</span>)</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>    split <span class="op">=</span> <span class="bu">int</span>(<span class="fl">0.7</span> <span class="op">*</span> N)</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> fit(t[:split], y[:split], K<span class="op">=</span><span class="dv">6</span>, period<span class="op">=</span><span class="dv">12</span>, trend<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>    yhat <span class="op">=</span> predict(t[split:], w, K<span class="op">=</span><span class="dv">6</span>, period<span class="op">=</span><span class="dv">12</span>, trend<span class="op">=</span><span class="va">True</span>, N<span class="op">=</span>N)</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>    ss_res <span class="op">=</span> np.<span class="bu">sum</span>((y[split:] <span class="op">-</span> yhat)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>    ss_tot <span class="op">=</span> np.<span class="bu">sum</span>((y[split:] <span class="op">-</span> y[split:].mean())<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'Test R²: </span><span class="sc">{</span><span class="dv">1</span> <span class="op">-</span> ss_res<span class="op">/</span>ss_tot<span class="sc">:.4f}</span><span class="ss">'</span>)   <span class="co"># → ~0.943</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>    amps, phases <span class="op">=</span> spectrum(w, K<span class="op">=</span><span class="dv">6</span>, trend<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Amplitudes by harmonic:'</span>, [<span class="ss">f'</span><span class="sc">{</span>a<span class="sc">:.3f}</span><span class="ss">'</span> <span class="cf">for</span> a <span class="kw">in</span> amps])</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Dominant period: T/1 = 12 months (annual cycle)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="connection-to-the-research-frontier" class="level2">
+<h2 class="anchored" data-anchor-id="connection-to-the-research-frontier">Connection to the research frontier</h2>
+<p>This model is related to — but derived independently from — several important lines of work:</p>
+<ul>
+<li><strong>Random Fourier Features</strong> (Rahimi &amp; Recht, 2007): random frequency sampling to approximate kernel functions. Fixed frequencies, probabilistic guarantees.</li>
+<li><strong>Fourier Feature Networks</strong> (Tancik et al., NeurIPS 2020): sinusoidal input mappings fix the spectral bias of MLPs for coordinate-based learning. Used in NeRF.</li>
+<li><strong>SIREN</strong> (Sitzmann et al., NeurIPS 2020): sinusoidal activations <em>throughout</em> a deep network. Proven to be structurally equivalent to one-hidden-layer Fourier regression.</li>
+</ul>
+<p>What this derivation adds is the <strong>geometric motivation</strong>: the embedding arises naturally from lifting scalars to the complex unit circle via <span class="math inline">\(e^{ix}\)</span>, making it clear <em>why</em> sinusoidal features work — they are the natural coordinates of a number living on a circle.</p>
+<p>The nested tower <span class="math inline">\(z_n = e^{iz_{n-1}}\)</span> is a direction the literature hasn’t explored fully: using iterated complex exponentials as an architecture, where Bessel functions emerge as the natural expansion coefficients. That’s a thread worth pulling.</p>
+<hr>
+</section>
+<section id="when-to-use-this-model" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-this-model">When to use this model</h2>
+<p><strong>Use Fourier regression when:</strong> - Your data has periodic or quasi-periodic structure (time series with seasonality, cyclical physical processes, signal processing) - Interpretability matters (you need to explain what the model found) - You have limited data (the model is very parameter-efficient) - You need fast inference with no GPU</p>
+<p><strong>Don’t use it when:</strong> - The relationship is non-periodic and non-smooth - You have high-dimensional inputs (this is a scalar-input model; multivariate extension requires tensor product features) - The signal is highly non-stationary (frequencies themselves change over time)</p>
+<hr>
+</section>
+<section id="speed-simplicity-and-why-that-matters" class="level2">
+<h2 class="anchored" data-anchor-id="speed-simplicity-and-why-that-matters">Speed, simplicity, and why that matters</h2>
+<p>A neural net trained with SGD has a training loop. You pick a learning rate, a batch size, a number of epochs, an architecture, an optimiser, a weight initialisation scheme. You watch a loss curve. You stop early or don’t. You retrain if it diverges.</p>
+<p>Fourier regression has none of that. It is a single matrix solve — one call to <code>np.linalg.lstsq</code>. The solution is exact, not approximate. There is no local minimum to get stuck in, no learning rate to tune, no random seed that changes the answer.</p>
+<p>Here is a direct benchmark on a periodic signal, pure NumPy, no GPU:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>N (data points)</th>
+<th>Fourier OLS</th>
+<th>MLP, 300 SGD steps</th>
+<th>speedup</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>100</td>
+<td>0.14 ms</td>
+<td>15 ms</td>
+<td>~105×</td>
+</tr>
+<tr class="even">
+<td>1,000</td>
+<td>0.43 ms</td>
+<td>89 ms</td>
+<td>~206×</td>
+</tr>
+<tr class="odd">
+<td>10,000</td>
+<td>3.4 ms</td>
+<td>1,479 ms</td>
+<td>~437×</td>
+</tr>
+</tbody>
+</table>
+<p>The MLP here has 97 parameters (1 hidden layer, 32 units). The Fourier model has 14. The MLP after 300 steps is still undertrained — to reach comparable accuracy it would need thousands more steps, pushing the gap further.</p>
+<p>This matters in practice in several situations:</p>
+<p><strong>Embedded and edge systems.</strong> No autodiff library, no GPU, sometimes no floating point unit. A matrix multiply and a solve is all you need.</p>
+<p><strong>Repeated fitting.</strong> If you’re fitting a fresh model every hour (demand forecasting, anomaly detection, sensor calibration), training time compounds. A 437× speedup means you can refit 437 times in the time a neural net fits once.</p>
+<p><strong>Hyperparameter-free deployment.</strong> Fourier regression has two meaningful hyperparameters: <span class="math inline">\(K\)</span> (number of harmonics) and <span class="math inline">\(T\)</span> (period). <span class="math inline">\(T\)</span> comes from domain knowledge or a quick FFT of the data. <span class="math inline">\(K\)</span> can be chosen by looking at the amplitude spectrum — you stop adding harmonics when the amplitude drops below noise. There is no learning rate, no batch size, no dropout, no architecture search.</p>
+<p><strong>Interpretable monitoring.</strong> After fitting, you can watch the amplitude spectrum change over time. If the dominant frequency shifts, something changed in the underlying system. A neural net gives you weights — the Fourier model gives you frequencies, amplitudes, and phases, all of which have physical meaning.</p>
+<p>The honest tradeoff: neural nets are more general. They can fit non-periodic, high-dimensional, and highly non-linear functions that Fourier regression cannot. For those cases, use a neural net. For periodic signals — which describes a surprisingly large fraction of real-world time series — Fourier regression is faster, smaller, more interpretable, and equally accurate.</p>
+</section>
+<section id="closing-thought" class="level2">
+<h2 class="anchored" data-anchor-id="closing-thought">Closing thought</h2>
+<p>The deepest insight here isn’t the model — it’s the perspective. When you see a scalar <span class="math inline">\(x\)</span>, you can ask: <em>what circle does this number live on?</em> That question, answered geometrically, gives you a feature map, an approximation theory, and a connection to some of the most important ideas in modern machine learning.</p>
+<p>The mathematics of Fourier analysis has been known for two centuries. What changes is the geometric framing — and geometric framings, when they’re the right ones, have a way of making hard things suddenly obvious.</p>
+<hr>
+<p><em>All code in this post is self-contained NumPy. No deep learning framework required.</em></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

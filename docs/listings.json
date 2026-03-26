@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/Fourier Regression/blog.html",
       "/posts/Market/Market-Price-Analysis.html",
       "/posts/Reversible-Cellular-Automata/RCA.html",
       "/posts/MNIST/mnist.html",
